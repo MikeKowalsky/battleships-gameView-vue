@@ -6,9 +6,11 @@ Vue.component('players-table', {
                 id: null,
                 email: this.my_data.loggedInName
             },
+            isPlayerTwo: true,
             playerTwo: null,
             normalDate: null,
-            shipsArray: this.my_data.ships
+            shipsArray: this.my_data.ships,
+            salvoesArray: this.my_data.salvoes
         };
     },
     mounted (){
@@ -21,8 +23,11 @@ Vue.component('players-table', {
             if(this.my_data.gamePlayers[0].player.email == this.playerOne.email){
                 this.playerOne.id = this.my_data.gamePlayers[0].player.id;
                 this.playerTwo = this.my_data.gamePlayers[1].player.email;
+            } else if(!isPlayerTwo){
+                //when second player is not available
             } else {
                 this.playerTwo = this.my_data.gamePlayers[0].player.email;
+//                this.isPlayerTwo = true;
             }
         },
         changeDate: function (){
@@ -42,11 +47,17 @@ Vue.component('players-table', {
                     cell.append(newPar);
                });
             });
+        },
+        showSalvoes: function(){
+            console.log('in showSalvoes');
+            console.log(this.salvoesArray);
+            
             
         },
     },
     updated (){
         this.showShips();
+        this.showSalvoes();
     },
     template: `
         <div>
@@ -63,7 +74,16 @@ Vue.component('players-table', {
             </table>
 
             <p>Grids</p>
-            <players-grid />
+            <div class="twoGrids">
+                <div>
+                    <p>You: {{ playerOne.email }}</p>
+                    <players-grid :oponent="false"/>
+                </div>
+                <div>
+                    <p>Oponent: {{ playerTwo }}</p>
+                    <players-grid id="oponentsGrid" :oponent="true"/>
+                </div>
+            </div>
         </div>
     `
 });
