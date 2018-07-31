@@ -1,0 +1,43 @@
+.statusTable{
+    border: 1px solid grey;
+    box-shadow: 3px 3px grey;
+}
+
+.statusTable td{
+    border: 1px solid grey;
+}
+
+
+.playersGrid{
+    border: 1px solid grey;
+    border-collapse: collapse;
+    box-shadow: 3px 3px grey;
+    
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.playersGrid td{
+    border: 1px solid grey;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+
+.playersGrid p{
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.bold{
+    font-weight: bold;
+}
+
+.bcg{
+    background-color: lightgray;
+}
+
+.ship{
+    background-color: blue;
+}

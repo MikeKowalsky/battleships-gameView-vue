@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game View</title>
+    
+    <!--    vue-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    
+    <!--    axios-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div id="gameView">
+        <div v-if="loading">
+            <p>Loading ...</p>
+        </div>
+        <div v-else>
+            <players-table :my_data = "rawData" />
+        </div>
+    </div>
+    
+    <script src="grid-row.js"></script>
+    <script src="players-grid.js"></script>
+    <script src="players-table.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+<!--
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+-->
