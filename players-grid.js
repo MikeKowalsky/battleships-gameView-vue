@@ -2,12 +2,12 @@ Vue.component('players-grid', {
 //    props: ['oponent'],
     data () {
         return {
-            vertical: ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
-            horizontal: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            vertical: ['', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            horizontal: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
         };
     },
     mounted (){
-        console.log('players-grid mounted');
+//        console.log('players-grid mounted');
 //        console.log(this.oponent);
     },
     template:`

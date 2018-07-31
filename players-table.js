@@ -10,7 +10,8 @@ Vue.component('players-table', {
             playerTwo: null,
             normalDate: null,
             shipsArray: this.my_data.ships,
-            salvoesArray: this.my_data.salvoes
+            salvoesArray: this.my_data.salvoes,
+            hitsArray: this.my_data.hAS
         };
     },
     mounted (){
@@ -35,32 +36,28 @@ Vue.component('players-table', {
             this.normalDate = tempDate.toLocaleString();
         },
         showShips: function (){
-            console.log('in showShips');
-            console.log(this.shipsArray);
-            
             this.shipsArray.forEach((ship) => {
                ship.locations.forEach((loco) => {
                     let cell = document.querySelector(`#${ loco }`);
                     cell.classList.add('ship');
                     let newPar = document.createElement('p');
-                    newPar.append(`${ ship.shipType.slice(0,2) }`);
+                    newPar.append(`${ ship.shipType.slice(0,2).toUpperCase() }`);
                     cell.append(newPar);
                });
             });
         },
         showSalvoes: function(){
-            console.log('in showSalvoes');
-            console.log(this.salvoesArray);
-            
             let oponentGrid = document.querySelector('#oponentGrid');
             let playerGrid = document.querySelector('#playerGrid');
-//            console.log(oponentsGrid.querySelector('#A1'));
             
             this.salvoesArray.forEach((salvo) => {
                 if(salvo.playerId == this.playerOne.id){
                     salvo.locations.forEach((loco) => {
                         let cell = oponentGrid.querySelector('#' + loco);
-                        cell.classList.add('salvo')
+                        cell.classList.add('salvo');
+                        let newPar = document.createElement('p');
+                        newPar.append(`${ salvo.turnNo }`);
+                        cell.append(newPar);
                     });
                 } else {
                     salvo.locations.forEach((loco) => {
@@ -74,10 +71,39 @@ Vue.component('players-table', {
                 }
             });
         },
+        showHitsAndSinks: function(){
+            let oponentGrid = document.querySelector('#oponentGrid');
+            let playerGrid = document.querySelector('#playerGrid');
+            
+            this.hitsArray.forEach((round) => {
+                for(shipType in round.hitsOnEnemy){
+                    if(round.hitsOnEnemy[shipType].hits.length > 0){
+//                        console.log(round.hitsOnEnemy[shipType].hits);
+                        round.hitsOnEnemy[shipType].hits.forEach((loco) => {
+                            let cell = oponentGrid.querySelector('#' + loco);
+                            
+                            cell.classList.add('hit');
+                            if(round.hitsOnEnemy[shipType].isSink){
+                                cell.classList.add('sink');
+                            }
+                        });
+                    }
+                }
+                for(shipType in round.hitsOnPlayer){
+                    if(round.hitsOnPlayer[shipType].isSink){
+                        round.hitsOnPlayer[shipType].hits.forEach((loco) => {
+                            let cell = playerGrid.querySelector('#' + loco);
+                            cell.classList.add('sink');
+                        });
+                    }
+                }
+            });
+        }
     },
     updated (){
         this.showShips();
         this.showSalvoes();
+        this.showHitsAndSinks();
     },
     template: `
         <div>
