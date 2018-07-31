@@ -1,5 +1,5 @@
 Vue.component('grid-row', {
-    props: ['vertical', 'rowNumber'],
+    props: ['vertical', 'rowNumber', 'oponent'],
     data (){
         return{
             idsArray: [],
@@ -12,6 +12,15 @@ Vue.component('grid-row', {
     methods: {
         createIds: function (){
             for(let i=0; i<this.vertical.length; i++){
+//                console.log(this.oponent);
+//                if(this.oponent){
+////                    let newId = `s${ this.vertical[i] }${ this.rowNumber }`;
+//                    let newId = "s" + this.vertical[i] + this.rowNumber;
+//                    console.log(newId);
+//                } else {
+//                    let newId = this.vertical[i] + this.rowNumber;
+//                    console.log(newId);
+//                }
                 let newId = this.vertical[i] + this.rowNumber;
                 this.idsArray.push(newId);
             }

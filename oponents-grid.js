@@ -1,5 +1,5 @@
-//Vue.component('ships', {
-//    props: ['vertical', 'rowNumber'],
+//Vue.component('oponents-grid', {
+//    props: [],
 //    data (){
 //        return{
 //            idsArray: []
