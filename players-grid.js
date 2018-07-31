@@ -1,5 +1,5 @@
 Vue.component('players-grid', {
-    props: ['oponent'],
+//    props: ['oponent'],
     data () {
         return {
             vertical: ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
@@ -24,7 +24,6 @@ Vue.component('players-grid', {
                 v-for="rowNumber in horizontal"
                 :rowNumber="rowNumber"
                 :vertical="vertical"
-                :oponent="oponent"
                 :key="rowNumber"
             />
         </table>
