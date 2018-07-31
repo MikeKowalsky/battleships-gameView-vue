@@ -52,7 +52,27 @@ Vue.component('players-table', {
             console.log('in showSalvoes');
             console.log(this.salvoesArray);
             
+            let oponentGrid = document.querySelector('#oponentGrid');
+            let playerGrid = document.querySelector('#playerGrid');
+//            console.log(oponentsGrid.querySelector('#A1'));
             
+            this.salvoesArray.forEach((salvo) => {
+                if(salvo.playerId == this.playerOne.id){
+                    salvo.locations.forEach((loco) => {
+                        let cell = oponentGrid.querySelector('#' + loco);
+                        cell.classList.add('salvo')
+                    });
+                } else {
+                    salvo.locations.forEach((loco) => {
+                        let cell = playerGrid.querySelector('#' + loco);
+                        if(cell.classList.contains('ship')){
+                            cell.classList.add('hit');
+                        } else {
+                            cell.classList.add('salvo');
+                        }
+                    });
+                }
+            });
         },
     },
     updated (){
@@ -61,7 +81,7 @@ Vue.component('players-table', {
     },
     template: `
         <div>
-            <p>Welcome again {{playerOne.email}}</p>
+            <p class="bold">Welcome again {{playerOne.email}}</p>
 
             <table class="statusTable">
                 <tr>
@@ -73,15 +93,15 @@ Vue.component('players-table', {
                 </tr>
             </table>
 
-            <p>Grids</p>
+            <p class="bold marg-top">Grids</p>
             <div class="twoGrids">
                 <div>
                     <p>You: {{ playerOne.email }}</p>
-                    <players-grid :oponent="false"/>
+                    <players-grid id="playerGrid" />
                 </div>
                 <div>
                     <p>Oponent: {{ playerTwo }}</p>
-                    <players-grid id="oponentsGrid" :oponent="true"/>
+                    <players-grid id="oponentGrid" />
                 </div>
             </div>
         </div>

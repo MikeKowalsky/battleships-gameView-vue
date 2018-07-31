@@ -40,10 +40,22 @@
     font-weight: bold;
 }
 
+.marg-top{
+    margin-top: 30px;
+}
+
 .bcg{
     background-color: lightgray;
 }
 
 .ship{
     background-color: blue;
+}
+
+.salvo{
+    background-color: yellow;
+}
+
+.hit{
+    background-color: red;
 }
