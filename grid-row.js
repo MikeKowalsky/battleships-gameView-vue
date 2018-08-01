@@ -7,7 +7,6 @@ Vue.component('grid-row', {
     },
     mounted (){
         this.createIds();
-//        console.log('grid-row mounted');
     },
     methods: {
         createIds: function (){
@@ -15,7 +14,6 @@ Vue.component('grid-row', {
                 let newId = this.rowNumber + this.vertical[i];
                 this.idsArray.push(newId);
             }
-//            console.log(this.idsArray);
         }
     },
     template:`

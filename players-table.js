@@ -1,5 +1,10 @@
 Vue.component('players-table', {
-    props: ['my_data'],
+    props: {
+        my_data: {
+            type: Object,
+            required: true
+        }
+    },
     data () {
         return {
             playerOne: {
@@ -78,10 +83,8 @@ Vue.component('players-table', {
             this.hitsArray.forEach((round) => {
                 for(shipType in round.hitsOnEnemy){
                     if(round.hitsOnEnemy[shipType].hits.length > 0){
-//                        console.log(round.hitsOnEnemy[shipType].hits);
                         round.hitsOnEnemy[shipType].hits.forEach((loco) => {
                             let cell = oponentGrid.querySelector('#' + loco);
-                            
                             cell.classList.add('hit');
                             if(round.hitsOnEnemy[shipType].isSink){
                                 cell.classList.add('sink');
